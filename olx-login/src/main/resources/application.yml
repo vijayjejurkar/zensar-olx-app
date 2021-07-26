@@ -1,0 +1,27 @@
+server:
+  port: 7000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        
+spring:
+  application:
+    name: auth-service
+  config:
+    import: configserver:http://localhost:8888
+  zipkin:
+    base-url: http://localhost:9411
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/olxusersdb
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    username: root
+#    password: root
+#  jpa:
+#    hibernate.ddl-auto: update
+    
+eureka:
+  client:
+    register-with-eureka: true
