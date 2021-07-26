@@ -1,0 +1,27 @@
+server:
+  port: 9191
+
+spring:
+  application:
+    name: API-GATEWAY
+    
+    
+  cloud:
+    gateway:
+      routes:
+      - id: AUTH-SERVICE
+        uri: lb://AUTH-SERVICE
+        predicates:
+        - Path= /users/**
+      - id: AUTH-SERVICE
+        uri: lb://ADVERTISE-SERVICE
+        predicates:
+        - Path= /olx-adv/**
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${random.uuid}
